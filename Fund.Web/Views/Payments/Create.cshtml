@@ -1,0 +1,65 @@
+﻿@model Fund.Web.Models.Payment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Payment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddPayment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="id" />
+                <label asp-for="description" class="control-label"></label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="valor" class="control-label"></label>
+                <input asp-for="valor" class="form-control"  value="@Convert.ToDecimal(Model.valor).ToString("#,##")" />
+                <span asp-validation-for="valor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="fecha" class="control-label"></label>
+                <input asp-for="fecha" id="datepicker" type="text" class="form-control" value="@Model.fecha.ToShortDateString()" />
+                <span asp-validation-for="fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="persona" class="control-label"></label>
+                <select asp-for="idperson" class="form-control" asp-items="@(new SelectList(ViewBag.personList,"id","name"))">
+                </select>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="PaymentList">Payment List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat:"dd/mm/yy"
+            });
+        });
+    </script>
+}

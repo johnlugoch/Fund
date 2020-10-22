@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Fund.Web.Models.Person>
+
+@{
+    ViewData["Title"] = "PersonList";
+}
+
+<h2>PersonList</h2>
+
+<p class="float-right">
+    <a asp-action="Create" class="btn btn outline-primary">Adicionar Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grupo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) { 
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Create", new { id= item.id, item.name,item.email, item.idgroup }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Delete", "DeletePerson", new { id = item.id }, new { @class = "btn btn-danger", onclick="return confirm('Estas seguro de eliminar este registro?')" })
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.grupo)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>

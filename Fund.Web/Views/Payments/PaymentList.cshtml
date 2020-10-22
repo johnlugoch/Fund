@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Fund.Web.Models.Payment>
+
+@{
+    ViewData["Title"] = "PaymentList";
+}
+
+<h2>Abonos</h2>
+
+<p class="float-right">
+    <a asp-action="Create" class="btn btn outline-primary">Nuevo Abono</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.persona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Create", new { id = item.id, item.description, item.valor, item.fecha, item.idperson, item.persona }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Delete", "DeletePayment", new { id = item.id }, new { @class = "btn btn-danger", onclick = "return confirm('Estas seguro de eliminar este registro?')" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.persona)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
