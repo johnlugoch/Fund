@@ -9,10 +9,7 @@ namespace Fund.Web.Models
 {
     public class FundContext : DbContext
     {
-        public FundContext(DbContextOptions<FundContext>options): base(options) { }
-
-
-        public DbSet<Group> group { get; set; }
+        public FundContext(DbContextOptions<FundContext>options): base(options) { }     
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,8 +24,10 @@ namespace Fund.Web.Models
                .IsUnique();
         }
 
+        public DbSet<Fund.Web.Models.Group> group { get; set; }
 
-        public DbSet<Person> person { get; set; }
+
+        public DbSet<Fund.Web.Models.Person> person { get; set; }
 
 
         public DbSet<Fund.Web.Models.Payment> Payment { get; set; }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fund.Web.Models;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Fund.Web.Controllers
 {
@@ -20,7 +21,7 @@ namespace Fund.Web.Controllers
 
         // GET: Groups
         public async Task<IActionResult> Index()
-        {
+        {                     
             return View(await _context.group.ToListAsync());
         }
 
